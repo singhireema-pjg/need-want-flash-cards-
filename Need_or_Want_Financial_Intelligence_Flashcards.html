@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Need or Want? - Financial Intelligence Flashcards</title>
+<style>
+* { box-sizing:border-box; }
+body {
+  margin:0; min-height:100vh; font-family:Arial, Helvetica, sans-serif;
+  background:linear-gradient(135deg,#eaf8ff 0%,#dff7f0 55%,#fff4c7 100%);
+  color:#17324d; display:flex; flex-direction:column; align-items:center;
+}
+header { text-align:center; padding:28px 15px 10px; }
+h1 { margin:0; font-size:clamp(28px,5vw,48px); color:#0c6b78; }
+.subtitle { margin:8px 0; font-size:17px; }
+.progress { font-weight:bold; color:#f29f05; }
+.deck { width:min(92vw,760px); margin:12px auto; }
+.card {
+  display:none; min-height:540px; background:white; border-radius:28px;
+  box-shadow:0 18px 45px rgba(25,65,90,.18); overflow:hidden;
+  border:4px solid #7bd5d0; position:relative;
+}
+.card.active { display:block; animation:pop .25s ease; }
+@keyframes pop { from{transform:scale(.97);opacity:.5} to{transform:scale(1);opacity:1} }
+.front,.back { min-height:540px; padding:34px; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; }
+.back { display:none; background:#f2fffb; }
+.card.flipped .front { display:none; }
+.card.flipped .back { display:flex; }
+.number { font-size:13px; letter-spacing:2px; font-weight:bold; color:#0c8b91; }
+.icon { font-size:92px; margin:20px 0 5px; }
+h2 { font-size:clamp(30px,6vw,50px); margin:10px 0; }
+.prompt { font-size:23px; font-weight:bold; color:#f29f05; }
+.choices { display:flex; gap:14px; margin:15px 0; flex-wrap:wrap; justify-content:center; }
+button {
+  border:0; border-radius:14px; padding:14px 24px; font-size:17px;
+  font-weight:bold; cursor:pointer; transition:.15s; box-shadow:0 5px 12px rgba(0,0,0,.12);
+}
+button:hover { transform:translateY(-2px); }
+.choices button:first-child { background:#b9edf0; color:#075b67; }
+.choices button:nth-child(2) { background:#ffe18a; color:#785300; }
+.reveal,.next { background:#0c7f89; color:white; margin-top:12px; }
+.answer { font-size:40px; font-weight:900; color:#0c7f89; margin:15px; }
+.back p { max-width:560px; font-size:19px; line-height:1.5; }
+.controls { display:flex; gap:12px; justify-content:center; margin:18px 0 28px; }
+.controls button { background:white; color:#0c6b78; border:2px solid #7bd5d0; }
+.score { text-align:center; font-weight:bold; min-height:24px; }
+footer { padding:0 15px 25px; text-align:center; font-size:13px; color:#496575; }
+@media(max-width:600px) {
+ .front,.back { padding:24px 16px; min-height:500px; }
+ .icon {font-size:72px} h2{font-size:31px} .answer{font-size:32px}
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>💰 Need or Want?</h1>
+  <div class="subtitle">Financial Intelligence Flashcards • Ages 10–14</div>
+  <div class="progress" id="progress">Card 1 of 8</div>
+</header>
+
+<main class="deck">
+    <div class="card" data-index="1">
+      <div class="front">
+        <div class="number">CARD 1</div>
+        <div class="icon">💧</div>
+        <h2>Clean Water</h2>
+        <p class="prompt">NEED or WANT?</p>
+        <div class="choices">
+          <button onclick="choose(event, this, 'NEED')">✓ NEED</button>
+          <button onclick="choose(event, this, 'WANT')">★ WANT</button>
+        </div>
+        <button class="reveal" onclick="reveal(event, this)">REVEAL ANSWER</button>
+      </div>
+      <div class="back">
+        <div class="number">ANSWER</div>
+        <div class="icon">💧</div>
+        <div class="answer">NEED</div>
+        <p>Clean water is essential for survival.</p>
+        <button class="next" onclick="nextCard(event)">NEXT CARD →</button>
+      </div>
+    </div>
+    
+    <div class="card" data-index="2">
+      <div class="front">
+        <div class="number">CARD 2</div>
+        <div class="icon">🎮</div>
+        <h2>Video Game Console</h2>
+        <p class="prompt">NEED or WANT?</p>
+        <div class="choices">
+          <button onclick="choose(event, this, 'NEED')">✓ NEED</button>
+          <button onclick="choose(event, this, 'WANT')">★ WANT</button>
+        </div>
+        <button class="reveal" onclick="reveal(event, this)">REVEAL ANSWER</button>
+      </div>
+      <div class="back">
+        <div class="number">ANSWER</div>
+        <div class="icon">🎮</div>
+        <div class="answer">WANT</div>
+        <p>Fun to have, but not essential for survival.</p>
+        <button class="next" onclick="nextCard(event)">NEXT CARD →</button>
+      </div>
+    </div>
+    
+    <div class="card" data-index="3">
+      <div class="front">
+        <div class="number">CARD 3</div>
+        <div class="icon">🍎</div>
+        <h2>Nutritious Food</h2>
+        <p class="prompt">NEED or WANT?</p>
+        <div class="choices">
+          <button onclick="choose(event, this, 'NEED')">✓ NEED</button>
+          <button onclick="choose(event, this, 'WANT')">★ WANT</button>
+        </div>
+        <button class="reveal" onclick="reveal(event, this)">REVEAL ANSWER</button>
+      </div>
+      <div class="back">
+        <div class="number">ANSWER</div>
+        <div class="icon">🍎</div>
+        <div class="answer">NEED</div>
+        <p>Our bodies need nutritious food to stay healthy.</p>
+        <button class="next" onclick="nextCard(event)">NEXT CARD →</button>
+      </div>
+    </div>
+    
+    <div class="card" data-index="4">
+      <div class="front">
+        <div class="number">CARD 4</div>
+        <div class="icon">👟</div>
+        <h2>Designer Sneakers</h2>
+        <p class="prompt">NEED or WANT?</p>
+        <div class="choices">
+          <button onclick="choose(event, this, 'NEED')">✓ NEED</button>
+          <button onclick="choose(event, this, 'WANT')">★ WANT</button>
+        </div>
+        <button class="reveal" onclick="reveal(event, this)">REVEAL ANSWER</button>
+      </div>
+      <div class="back">
+        <div class="number">ANSWER</div>
+        <div class="icon">👟</div>
+        <div class="answer">WANT</div>
+        <p>Regular safe footwear can meet the basic need.</p>
+        <button class="next" onclick="nextCard(event)">NEXT CARD →</button>
+      </div>
+    </div>
+    
+    <div class="card" data-index="5">
+      <div class="front">
+        <div class="number">CARD 5</div>
+        <div class="icon">🧥</div>
+        <h2>Warm Winter Coat</h2>
+        <p class="prompt">NEED or WANT?</p>
+        <div class="choices">
+          <button onclick="choose(event, this, 'NEED')">✓ NEED</button>
+          <button onclick="choose(event, this, 'WANT')">★ WANT</button>
+        </div>
+        <button class="reveal" onclick="reveal(event, this)">REVEAL ANSWER</button>
+      </div>
+      <div class="back">
+        <div class="number">ANSWER</div>
+        <div class="icon">🧥</div>
+        <div class="answer">NEED</div>
+        <p>Warm clothing protects us from cold weather.</p>
+        <button class="next" onclick="nextCard(event)">NEXT CARD →</button>
+      </div>
+    </div>
+    
+    <div class="card" data-index="6">
+      <div class="front">
+        <div class="number">CARD 6</div>
+        <div class="icon">📱</div>
+        <h2>Smartphone</h2>
+        <p class="prompt">NEED or WANT?</p>
+        <div class="choices">
+          <button onclick="choose(event, this, 'NEED')">✓ NEED</button>
+          <button onclick="choose(event, this, 'WANT')">★ WANT</button>
+        </div>
+        <button class="reveal" onclick="reveal(event, this)">REVEAL ANSWER</button>
+      </div>
+      <div class="back">
+        <div class="number">ANSWER</div>
+        <div class="icon">📱</div>
+        <div class="answer">WANT</div>
+        <p>Useful, but not usually essential for survival.</p>
+        <button class="next" onclick="nextCard(event)">NEXT CARD →</button>
+      </div>
+    </div>
+    
+    <div class="card" data-index="7">
+      <div class="front">
+        <div class="number">CARD 7</div>
+        <div class="icon">🏠</div>
+        <h2>Safe Shelter / House</h2>
+        <p class="prompt">NEED or WANT?</p>
+        <div class="choices">
+          <button onclick="choose(event, this, 'NEED')">✓ NEED</button>
+          <button onclick="choose(event, this, 'WANT')">★ WANT</button>
+        </div>
+        <button class="reveal" onclick="reveal(event, this)">REVEAL ANSWER</button>
+      </div>
+      <div class="back">
+        <div class="number">ANSWER</div>
+        <div class="icon">🏠</div>
+        <div class="answer">NEED</div>
+        <p>Safe shelter protects us from danger and weather.</p>
+        <button class="next" onclick="nextCard(event)">NEXT CARD →</button>
+      </div>
+    </div>
+    
+    <div class="card" data-index="8">
+      <div class="front">
+        <div class="number">CARD 8</div>
+        <div class="icon">🍬</div>
+        <h2>Candy &amp; Soda</h2>
+        <p class="prompt">NEED or WANT?</p>
+        <div class="choices">
+          <button onclick="choose(event, this, 'NEED')">✓ NEED</button>
+          <button onclick="choose(event, this, 'WANT')">★ WANT</button>
+        </div>
+        <button class="reveal" onclick="reveal(event, this)">REVEAL ANSWER</button>
+      </div>
+      <div class="back">
+        <div class="number">ANSWER</div>
+        <div class="icon">🍬</div>
+        <div class="answer">WANT</div>
+        <p>Treats are enjoyable but not essential for survival.</p>
+        <button class="next" onclick="nextCard(event)">NEXT CARD →</button>
+      </div>
+    </div>
+    </main>
+
+<div class="score" id="score">Make your choice, then reveal the answer!</div>
+<div class="controls">
+  <button onclick="prevCard()">← PREVIOUS</button>
+  <button onclick="nextCard()">NEXT →</button>
+  <button onclick="resetDeck()">↻ RESET</button>
+</div>
+
+<footer>
+  Think before you spend: <b>Needs come before wants.</b><br>
+  Tip: Some items can change category depending on the situation.
+</footer>
+
+<script>
+let current=0, score=0, attempted=0;
+const cards=document.querySelectorAll('.card');
+function show(i){
+  current=(i+cards.length)%cards.length;
+  cards.forEach((c,n)=>c.classList.toggle('active',n===current));
+  document.getElementById('progress').textContent=`Card ${current+1} of ${cards.length}`;
+  document.getElementById('score').textContent=attempted?`Score: ${score} / ${attempted}`:'Make your choice, then reveal the answer!';
+}
+function reveal(e,b){ e.stopPropagation(); b.closest('.card').classList.add('flipped'); }
+function nextCard(e){ if(e)e.stopPropagation(); show(current+1); }
+function choose(e,b,choice){
+  e.stopPropagation();
+  const card=b.closest('.card');
+  const idx=Number(card.dataset.index)-1;
+  const correct=["NEED","WANT","NEED","WANT","NEED","WANT","NEED","WANT"][idx];
+  if(card.dataset.attempted!=="yes"){
+    attempted++; card.dataset.attempted="yes";
+    if(choice===correct){score++; document.getElementById('score').textContent='🎉 Correct! Reveal the answer to learn why.';}
+    else document.getElementById('score').textContent='💡 Good thinking! Reveal the answer and check.';
+  }
+}
+function prevCard(){show(current-1)}
+function resetDeck(){
+  score=0; attempted=0;
+  cards.forEach(c=>{c.classList.remove('flipped'); delete c.dataset.attempted;});
+  show(0);
+}
+show(0);
+</script>
+</body>
+</html>
